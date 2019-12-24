@@ -1,0 +1,50 @@
+
+type Presentation {
+    id: ID!
+    title: String!
+    author: Author
+    meta: Meta
+    theme: Theme
+    pages: [Page]
+}
+
+type Page {
+    bulletPoints: [String]
+    header: String
+    id: ID!
+}
+
+type Author {
+    age: Int
+    firstName: String
+    lastName: String
+    id: ID!
+}
+
+type Meta {
+    createdAt: String
+    numberOfSlides: Int
+}
+
+type Theme {
+    font: Font
+    colour: Colour
+}
+
+type Font {
+    family: String
+    size: String
+    colour: String
+}
+
+type Colour {
+    primary: String
+    secondary: String
+    accent: String
+}
+
+
+type Query {
+    presentations: [Presentation]
+    presentation(id: ID!): Presentation
+}

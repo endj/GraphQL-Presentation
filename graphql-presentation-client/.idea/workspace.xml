@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="e9337513-2c4c-4368-8249-1d78c63a506c" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ProjectId" id="1VQTSWgNt7FgTY7ERTla5hEk3B1" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e9337513-2c4c-4368-8249-1d78c63a506c" name="Default Changelist" comment="" />
+      <created>1577184318733</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1577184318733</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="910" y="395" width="800" height="684" key="#Plugins" timestamp="1577186742134">
+      <screen x="70" y="27" width="2490" height="1413" />
+    </state>
+    <state x="910" y="395" width="800" height="684" key="#Plugins/70.27.2490.1413/2560.0.1920.1080@70.27.2490.1413" timestamp="1577186742134" />
+    <state x="1028" y="538" width="564" height="397" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1577185458041">
+      <screen x="70" y="27" width="2490" height="1413" />
+    </state>
+    <state x="1028" y="538" width="564" height="397" key="#com.intellij.fileTypes.FileTypeChooser/70.27.2490.1413/2560.0.1920.1080@70.27.2490.1413" timestamp="1577185458041" />
+    <state x="1093" y="480" width="424" height="520" key="FileChooserDialogImpl" timestamp="1577184520294">
+      <screen x="70" y="27" width="2490" height="1413" />
+    </state>
+    <state x="1093" y="480" width="424" height="520" key="FileChooserDialogImpl/70.27.2490.1413/2560.0.1920.1080@70.27.2490.1413" timestamp="1577184520294" />
+    <state x="925" y="432" width="710" height="538" key="find.popup" timestamp="1577219693668">
+      <screen x="70" y="27" width="2490" height="1413" />
+    </state>
+    <state x="925" y="432" width="710" height="538" key="find.popup/70.27.2490.1413/2560.0.1920.1080@70.27.2490.1413" timestamp="1577219693668" />
+    <state x="944" y="326" key="run.anything.popup" timestamp="1577223262229">
+      <screen x="70" y="27" width="2490" height="1413" />
+    </state>
+    <state x="944" y="326" key="run.anything.popup/70.27.2490.1413/2560.0.1920.1080@70.27.2490.1413" timestamp="1577223262229" />
+    <state x="978" y="349" width="672" height="678" key="search.everywhere.popup" timestamp="1577226312803">
+      <screen x="70" y="27" width="2490" height="1413" />
+    </state>
+    <state x="978" y="349" width="672" height="678" key="search.everywhere.popup/70.27.2490.1413/2560.0.1920.1080@70.27.2490.1413" timestamp="1577226312803" />
+  </component>
+</project>
