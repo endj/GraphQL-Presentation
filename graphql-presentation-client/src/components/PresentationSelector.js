@@ -1,42 +1,38 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { LIST_ALL_PRESENTATIONS } from '../client/queries'
-import { StyleContext } from '../contexts/StyleContext'
 import { useQuery } from '@apollo/react-hooks';
 
 import {useHistory} from 'react-router-dom';
-
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 
 const PresentationSelector = () => {
-    const { loading, error, data } = useQuery(LIST_ALL_PRESENTATIONS);
-    const history = useHistory();
+  const { loading, error, data } = useQuery(LIST_ALL_PRESENTATIONS);
+  const history = useHistory();
 
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error :(</p>;
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>;
 
-    return (
-      <>
-        <h2>Presentations</h2>
-        <div style={containerPadding}>
-          <Grid container spacing={10}>
-            {
-              data.presentations.map(presentation =>
-                <Grid
-                onClick={() => history.push(`/slide/${presentation.id}`)}
-                container item xs={4}
-                key={presentation.id}
-                >
-                  <PresentationItem presentation={presentation} />
-                </Grid>
-              )
-            }
-          </Grid>
-        </div>
-      </>
-    )
+  return (
+    <>
+      <h2>Presentations</h2>
+      <div style={containerPadding}>
+        <Grid container spacing={10}>
+          {
+            data.presentations.map(presentation =>
+              <Grid
+              onClick={() => history.push(`/slide/${presentation.id}`)}
+              container item xs={4}
+              key={presentation.id}
+              >
+                <PresentationItem presentation={presentation} />
+              </Grid>
+            )
+          }
+        </Grid>
+      </div>
+    </>
+  )
 }
 
 

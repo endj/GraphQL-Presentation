@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e9337513-2c4c-4368-8249-1d78c63a506c" name="Default Changelist" comment="" />
+    <list default="true" id="e9337513-2c4c-4368-8249-1d78c63a506c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PageEditor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PageEditor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Presentation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Presentation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PresentationSelector.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PresentationSelector.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graphql-presentation/src/main/java/se/edinjakupovic/graphqlpresentation/GraphqlPresentationApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graphql-presentation/src/main/java/se/edinjakupovic/graphqlpresentation/GraphqlPresentationApplication.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="1VQTSWgNt7FgTY7ERTla5hEk3B1" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -15,7 +26,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -63,14 +74,14 @@
       <screen x="70" y="27" width="2490" height="1413" />
     </state>
     <state x="1093" y="480" width="424" height="520" key="FileChooserDialogImpl/70.27.2490.1413/2560.0.1920.1080@70.27.2490.1413" timestamp="1577184520294" />
-    <state x="925" y="432" width="710" height="538" key="find.popup" timestamp="1577219693668">
+    <state x="925" y="432" width="710" height="538" key="find.popup" timestamp="1577269241490">
       <screen x="70" y="27" width="2490" height="1413" />
     </state>
-    <state x="925" y="432" width="710" height="538" key="find.popup/70.27.2490.1413/2560.0.1920.1080@70.27.2490.1413" timestamp="1577219693668" />
-    <state x="944" y="326" key="run.anything.popup" timestamp="1577223262229">
+    <state x="925" y="432" width="710" height="538" key="find.popup/70.27.2490.1413/2560.0.1920.1080@70.27.2490.1413" timestamp="1577269241490" />
+    <state x="944" y="326" key="run.anything.popup" timestamp="1577268592256">
       <screen x="70" y="27" width="2490" height="1413" />
     </state>
-    <state x="944" y="326" key="run.anything.popup/70.27.2490.1413/2560.0.1920.1080@70.27.2490.1413" timestamp="1577223262229" />
+    <state x="944" y="326" key="run.anything.popup/70.27.2490.1413/2560.0.1920.1080@70.27.2490.1413" timestamp="1577268592256" />
     <state x="978" y="349" width="672" height="678" key="search.everywhere.popup" timestamp="1577226312803">
       <screen x="70" y="27" width="2490" height="1413" />
     </state>

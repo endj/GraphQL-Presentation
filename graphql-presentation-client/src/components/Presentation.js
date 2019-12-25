@@ -1,10 +1,7 @@
-import React, {useContext, useState, useEffect} from 'react'
+import React, { useState, useEffect} from 'react'
 import {useParams} from "react-router";
-import Header from './Header'
 import Page from './Page'
 import PageEditor from './PageEditor'
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 
 import { FIND_PRESENTATION_BY_ID } from '../client/queries'
 import { useQuery } from '@apollo/react-hooks';

@@ -1,8 +1,7 @@
-import React, { useState, useContext } from 'react'
+import React from 'react'
 import PresentationSelector from './components/PresentationSelector'
 import {PresentationDataProvider} from './components/Presentation'
 import DataProvider from './contexts/DataProvider'
-import StyleContext from './contexts/StyleContext'
 import {BrowserRouter as Router,Route,Switch} from 'react-router-dom'
 
 export const App = () => {
