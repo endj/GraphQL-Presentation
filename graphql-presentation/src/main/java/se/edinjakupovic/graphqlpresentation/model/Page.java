@@ -11,5 +11,6 @@ import java.util.UUID;
 public class Page {
     List<String> bulletPoints;
     String header;
+    String image;
     UUID id;
 }

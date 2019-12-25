@@ -19,7 +19,8 @@ const Page = ({theme, page}) => {
 
     const container = {
         background: colors.secondary,
-        height: "100%"
+        height: "100%",
+        width:"100%"
     }
 
     const bulletPoint = {
@@ -33,10 +34,16 @@ const Page = ({theme, page}) => {
         padding: "100px"
     }
 
+    const imageStyle = {
+        width: "100%"
+    }
+
+    console.log(page)
+    const image = page.image ? <img style={imageStyle} src={"data:image/jpeg;base64,"+page.image} />: null
     const header = page.header ? <h1 style={headerStyle}>{page.header}</h1> : null;
     const bulletPoints = page.bulletPoints
                           ? <ul style={bulletPointsStyle}>
-                              {page.bulletPoints.map(point => <li style={bulletPoint} key={point}>{point}</li>)}
+                              {page.bulletPoints.map(point => <li style={bulletPoint} >{point}</li>)}
                             </ul>
                           : null;
 
@@ -44,6 +51,7 @@ const Page = ({theme, page}) => {
       <div style={container}>
         {header}
         {bulletPoints}
+        {image}
       </div>
     )
 }

@@ -4,16 +4,16 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import se.edinjakupovic.graphqlpresentation.config.SlidesConfig;
 import se.edinjakupovic.graphqlpresentation.model.*;
 import se.edinjakupovic.graphqlpresentation.service.ColourService;
 import se.edinjakupovic.graphqlpresentation.service.ColourTheme;
+import se.edinjakupovic.graphqlpresentation.service.PresentationGenerator;
 import se.edinjakupovic.graphqlpresentation.service.PresentationService;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Random;
 import java.util.UUID;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @Slf4j
@@ -21,11 +21,17 @@ import java.util.stream.IntStream;
 public class GraphqlPresentationApplication implements CommandLineRunner {
 
     private final PresentationService presentationService;
+    private final PresentationGenerator presentationGenerator;
+    private final SlidesConfig slidesConfig;
     private final ColourService colourService;
 
     public GraphqlPresentationApplication(PresentationService presentationService,
+                                          PresentationGenerator presentationGenerator,
+                                          SlidesConfig slidesConfig,
                                           ColourService colourService) {
         this.presentationService = presentationService;
+        this.presentationGenerator = presentationGenerator;
+        this.slidesConfig = slidesConfig;
         this.colourService = colourService;
     }
 
@@ -35,53 +41,36 @@ public class GraphqlPresentationApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        IntStream.range(0, 10).forEach(x -> presentationService.savePresentation(createPresentation()));
-        log.info("Presentations {}", presentationService.getAllPresentations());
+        Presentation graphQlPresentation = createPresentationFromConfig();
+        presentationService.savePresentation(graphQlPresentation);
+        IntStream.range(0, 10).forEach(x -> presentationService.savePresentation(presentationGenerator.generateRandomPresentation()));
     }
 
-    private Presentation createPresentation() {
+    private Presentation createPresentationFromConfig() {
+        List<Page> slidePages = presentationGenerator.generatePresentationSlidesFromFile(slidesConfig.getFile());
         return Presentation.builder()
                 .id(UUID.randomUUID())
-                .title(UUID.randomUUID().toString())
+                .title(slidesConfig.getTitle())
                 .author(Author.builder()
-                        .age(22)
-                        .firstName("ed")
-                        .lastName("jak")
-                        .id(UUID.randomUUID()).build())
+                        .id(UUID.randomUUID())
+                        .firstName(slidesConfig.getFirstName())
+                        .lastName(slidesConfig.getLastName())
+                        .age(slidesConfig.getAge())
+                        .build())
                 .meta(Meta.builder()
                         .createdAt(LocalDate.now())
-                        .numberOfSlides(22)
+                        .numberOfSlides(slidePages.size())
                         .build())
                 .theme(Theme.builder()
                         .font(Font.builder()
-                                .family("roboto")
-                                .size("55px")
-                                .colour("black")
+                                .size(slidesConfig.getFontSize())
+                                .colour(slidesConfig.getFontColour())
+                                .family(slidesConfig.getFontFamiliy())
                                 .build())
-                        .colour(Math.random() > 0.5 ? colourService.getColourTheme(ColourTheme.DARK) : colourService.getColourTheme(ColourTheme.LIGHT)).build())
-                .pages(createRandomPages())
+                        .colour(colourService.getColourTheme(ColourTheme.GREEN))
+                        .build())
+                .pages(slidePages)
                 .build();
     }
 
-    private static List<Page> createRandomPages() {
-        Random random = new Random();
-        int numberOfPages = Math.max(1, random.nextInt(5));
-
-
-
-        return IntStream.rangeClosed(0, Math.max(1, numberOfPages)).mapToObj(x ->
-                Page
-                        .builder()
-                        .bulletPoints(
-                                List.of(points[Math.max(0,random.nextInt(points.length)-1)],
-                                        points[Math.max(0,random.nextInt(points.length)-1)],
-                                        points[Math.max(0,random.nextInt(points.length)-1)])
-                        )
-                        .header(UUID.randomUUID().toString())
-                        .id(UUID.randomUUID()).build()
-        ).collect(Collectors.toList());
-    }
-
-    static String[] points = new String[]{"How to do that", "Why do that", "xd so muhc","graphql is cool","to test or not","shut up",
-    "eventloopp", "steeve balmer","docker cokcer docker","kafkaeqsquq","to,e tp tgo sto sleep","swag"};
 }

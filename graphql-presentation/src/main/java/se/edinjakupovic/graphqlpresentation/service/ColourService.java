@@ -10,17 +10,17 @@ public class ColourService {
 
     static {
         themeMap.put(ColourTheme.DARK, Colour.builder()
-                        .primary("#2F3640")
-                        .secondary("#5E6C80")
-                        .accent("#FFE8BD").build());
+                .primary("#2F3640")
+                .secondary("#5E6C80")
+                .accent("#FFE8BD").build());
         themeMap.put(ColourTheme.LIGHT, Colour.builder()
-                        .primary("#BDD8FF")
-                        .secondary("#D6E7FF")
-                        .accent("#495680").build());
+                .primary("#BDD8FF")
+                .secondary("#D6E7FF")
+                .accent("#495680").build());
         themeMap.put(ColourTheme.GREEN, Colour.builder()
-                        .primary("#A7B37B")
-                        .secondary("#BCCC83")
-                        .accent("#FFDBD6").build());
+                .primary("#A7B37B")
+                .secondary("#BCCC83")
+                .accent("#220B36").build());
     }
 
     public Colour getColourTheme(ColourTheme colourTheme) {

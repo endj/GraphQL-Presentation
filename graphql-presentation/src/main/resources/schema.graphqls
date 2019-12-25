@@ -11,6 +11,7 @@ type Presentation {
 type Page {
     bulletPoints: [String]
     header: String
+    image: String
     id: ID!
 }
 

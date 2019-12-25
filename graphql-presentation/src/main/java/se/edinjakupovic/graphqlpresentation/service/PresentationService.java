@@ -16,9 +16,7 @@ public class PresentationService {
 
     public Presentation savePresentation(Presentation presentation) {
         presentationMap.put(presentation.getId(), presentation);
-        presentation.getPages().forEach(page -> {
-            pageMap.put(page.getId(), page);
-        });
+        presentation.getPages().forEach(page -> pageMap.put(page.getId(), page));
         return presentation;
     }
 

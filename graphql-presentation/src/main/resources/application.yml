@@ -1,1 +1,11 @@
-
+presentation:
+  file: "slides/slide"
+  title: "An introduction to GraphQL"
+  font:
+    size: "55px"
+    family: "roboto"
+    colour: "black"
+  author:
+    first-name: "Edin"
+    last-name: "Jakupovic"
+    age: 27

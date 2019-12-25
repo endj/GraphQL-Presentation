@@ -28,6 +28,7 @@ export const FIND_PRESENTATION_BY_ID = gql`query Presentation($id: ID!){
                                      pages {
                                        bulletPoints
                                        header
+                                       image
                                        id
                                      }
                                    }

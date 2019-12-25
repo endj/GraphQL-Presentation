@@ -23,7 +23,7 @@ const PresentationSelector = () => {
               <Grid
               onClick={() => history.push(`/slide/${presentation.id}`)}
               container item xs={4}
-              key={presentation.id}
+              key={presentation.id + presentation.title}
               >
                 <PresentationItem presentation={presentation} />
               </Grid>
