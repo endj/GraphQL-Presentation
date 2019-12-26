@@ -1,4 +1,4 @@
-package se.edinjakupovic.graphqlpresentation.config;
+package se.edinjakupovic.graphqlpresentation.config.bean;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import org.springframework.context.annotation.Bean;

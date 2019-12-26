@@ -1,4 +1,3 @@
-
 type Presentation {
     id: ID!
     title: String!
@@ -43,7 +42,6 @@ type Colour {
     secondary: String
     accent: String
 }
-
 
 type Query {
     presentations: [Presentation]

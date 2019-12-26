@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import se.edinjakupovic.graphqlpresentation.config.SlidesConfig;
+import se.edinjakupovic.graphqlpresentation.config.PresentationConfig;
 import se.edinjakupovic.graphqlpresentation.model.*;
 import se.edinjakupovic.graphqlpresentation.service.ColourService;
 import se.edinjakupovic.graphqlpresentation.service.ColourTheme;
@@ -22,16 +22,16 @@ public class GraphqlPresentationApplication implements CommandLineRunner {
 
     private final PresentationService presentationService;
     private final PresentationGenerator presentationGenerator;
-    private final SlidesConfig slidesConfig;
+    private final PresentationConfig presentationConfig;
     private final ColourService colourService;
 
     public GraphqlPresentationApplication(PresentationService presentationService,
                                           PresentationGenerator presentationGenerator,
-                                          SlidesConfig slidesConfig,
+                                          PresentationConfig presentationConfig,
                                           ColourService colourService) {
         this.presentationService = presentationService;
         this.presentationGenerator = presentationGenerator;
-        this.slidesConfig = slidesConfig;
+        this.presentationConfig = presentationConfig;
         this.colourService = colourService;
     }
 
@@ -41,21 +41,22 @@ public class GraphqlPresentationApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        Presentation graphQlPresentation = createPresentationFromConfig();
-        presentationService.savePresentation(graphQlPresentation);
-        IntStream.range(0, 10).forEach(x -> presentationService.savePresentation(presentationGenerator.generateRandomPresentation()));
+        Presentation presentation = createPresentationFromConfig();
+        presentationService.savePresentation(presentation);
+        IntStream.range(0, 5)
+                .forEach(x -> presentationService.savePresentation(presentationGenerator.generateRandomPresentation()));
     }
 
     private Presentation createPresentationFromConfig() {
-        List<Page> slidePages = presentationGenerator.generatePresentationSlidesFromFile(slidesConfig.getFile());
+        List<Page> slidePages = presentationGenerator.generatePresentationSlidesFromFile(presentationConfig.getFile());
         return Presentation.builder()
                 .id(UUID.randomUUID())
-                .title(slidesConfig.getTitle())
+                .title(presentationConfig.getTitle())
                 .author(Author.builder()
                         .id(UUID.randomUUID())
-                        .firstName(slidesConfig.getFirstName())
-                        .lastName(slidesConfig.getLastName())
-                        .age(slidesConfig.getAge())
+                        .firstName(presentationConfig.getAuthor().getFirstName())
+                        .lastName(presentationConfig.getAuthor().getLastName())
+                        .age(presentationConfig.getAuthor().getAge())
                         .build())
                 .meta(Meta.builder()
                         .createdAt(LocalDate.now())
@@ -63,9 +64,9 @@ public class GraphqlPresentationApplication implements CommandLineRunner {
                         .build())
                 .theme(Theme.builder()
                         .font(Font.builder()
-                                .size(slidesConfig.getFontSize())
-                                .colour(slidesConfig.getFontColour())
-                                .family(slidesConfig.getFontFamiliy())
+                                .size(presentationConfig.getFont().getSize())
+                                .colour(presentationConfig.getFont().getColour())
+                                .family(presentationConfig.getFont().getFamily())
                                 .build())
                         .colour(colourService.getColourTheme(ColourTheme.GREEN))
                         .build())

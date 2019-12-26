@@ -51,10 +51,10 @@ public class PresentationGenerator {
                                 .size("55px")
                                 .colour("black")
                                 .build())
-                        .colour(
-                                Math.random() > 0.5
-                                        ? colourService.getColourTheme(ColourTheme.DARK)
-                                        : colourService.getColourTheme(ColourTheme.LIGHT)).build())
+                        .colour(Math.random() > 0.5
+                                ? colourService.getColourTheme(ColourTheme.DARK)
+                                : colourService.getColourTheme(ColourTheme.LIGHT))
+                        .build())
                 .pages(createRandomPages())
                 .build();
     }
@@ -63,13 +63,12 @@ public class PresentationGenerator {
         int numberOfPages = random.nextInt(1, 5);
 
         return IntStream.rangeClosed(0, numberOfPages).mapToObj(x ->
-                Page
-                        .builder()
+                Page.builder()
                         .bulletPoints(
-                                List.of(randomBulletPoint(),
+                                List.of(
                                         randomBulletPoint(),
-                                        randomBulletPoint())
-                        )
+                                        randomBulletPoint(),
+                                        randomBulletPoint()))
                         .header(randomHeader())
                         .id(UUID.randomUUID()).build()
         ).collect(Collectors.toList());
@@ -94,19 +93,20 @@ public class PresentationGenerator {
             "I used to work in sales but now I evangelize Microsoft’s products",
             "Apple revolutionized the experience of using headphones when it killed the headphone jack on iPhones",
             "Developer Developer Developers",
-            "Sharing Economy",
+            "Ride Sharing Economy",
             "Disrupting disruptions tech tech",
             "Docker inside Docker inside Docker",
             "Kafkaesque Ride Sharing using Kafka",
             "PogoStick based architecture",
-            "Avocado as a service: AaaS"};
+            "Avocado as a service: AaaS"
+    };
 
     private static final String[] RANDOM_HEADERS = new String[]{
             "A Netflix for Youtube",
             "Service as a platform",
             "Platform as a API",
-            "Service as a Service",
-            "Cloud learning blockhain AI"
+            "Service as a Service as a Service",
+            "Cloud learning Blockchain AI"
     };
 
     private static final String[] RANDOM_TITLES = new String[]{
@@ -121,5 +121,6 @@ public class PresentationGenerator {
             "Mobile First",
             "Voice-as-User Interface",
             "Multiexperience",
-            "Internet of Things"};
+            "Internet of Things"
+    };
 }

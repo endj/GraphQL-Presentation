@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react'
-import {useParams} from "react-router";
+import { useParams } from "react-router";
 import Page from './Page'
 import PageEditor from './PageEditor'
 
@@ -20,8 +20,8 @@ export const Presentation = ({presentation}) => {
     const [page,setPage] = useState(0)
 
     const onDown = (key) => {
-      if (key === "ArrowRight") setPage(page => page+1)
-      if (key === "ArrowLeft") setPage(page => Math.max(page-1,0))
+      if (key === "ArrowRight") setPage(oldPage => oldPage+1)
+      if (key === "ArrowLeft") setPage(oldPage => Math.max(oldPage-1,0))
     }
 
     useEffect(() => {

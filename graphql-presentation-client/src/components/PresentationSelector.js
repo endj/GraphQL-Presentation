@@ -47,6 +47,7 @@ const PresentationItem  = ({presentation}) => {
 
   const infoStyle = {
       padding: "10px",
+      minWidth: "300px",
       background: hasTheme ?  presentation.theme.colour.secondary : "white",
       fontFamily: hasTheme ?  presentation.theme.font.family : "white"
   }

@@ -1,11 +1,8 @@
 package se.edinjakupovic.graphqlpresentation.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.util.ResourceUtils;
 import se.edinjakupovic.graphqlpresentation.model.Page;
 
-import java.awt.*;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -34,33 +31,30 @@ public class SlideDefinitionParser {
 
     private Page createPage(String[] lines) {
         List<String> bulletPoints = new ArrayList<>();
-        String header = "";
-        String image = "";
+        Page.PageBuilder builder = Page.builder();
 
-        for (String line:lines) {
-            if(line.startsWith(HEADER)) {
-                header = line.split(HEADER)[1];
+        for (String line : lines) {
+            if (line.startsWith(HEADER)) {
+                builder = builder.header(line.split(HEADER)[1]);
             }
-            if(line.startsWith(BULLET_POINT)) {
+            if (line.startsWith(BULLET_POINT)) {
                 bulletPoints.add(line.replace(BULLET_POINT, ""));
             }
-            if(line.startsWith(IMAGE_START)) {
+            if (line.startsWith(IMAGE_START)) {
                 String fileName = line.replace(IMAGE_START, "");
-                image = imageService.loadImageAsString(fileName);
+                builder = builder.image(imageService.loadImageAsBase64String(fileName));
             }
         }
-
-        return Page.builder()
-                .header(header)
+        return builder
                 .id(UUID.randomUUID())
                 .bulletPoints(bulletPoints)
-                .image(image)
                 .build();
     }
 
     private List<String[]> splitByPage(String[] lines) {
         List<String[]> definitions = new ArrayList<>();
-        int start = 0, end = 0;
+        int start = 0;
+        int end = 0;
         for (int i = 0; i < lines.length; i++, end++) {
             if (lines[i].startsWith(END_OF_PAGE)) {
                 definitions.add(Arrays.copyOfRange(lines, start, end));

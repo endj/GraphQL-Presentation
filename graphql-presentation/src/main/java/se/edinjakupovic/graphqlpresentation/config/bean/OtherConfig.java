@@ -1,4 +1,4 @@
-package se.edinjakupovic.graphqlpresentation.config;
+package se.edinjakupovic.graphqlpresentation.config.bean;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -38,10 +38,8 @@ const Page = ({theme, page}) => {
         width: "100%"
     }
 
-    console.log(page)
     const image = page.image ? <img style={imageStyle} src={"data:image/jpeg;base64,"+page.image} />: null
-    const header = page.header ? <h1 style={headerStyle}>{page.header}</h1> : null;
-    const bulletPoints = page.bulletPoints
+    const bulletPoints = page.bulletPoints && page.bulletPoints.length > 0
                           ? <ul style={bulletPointsStyle}>
                               {page.bulletPoints.map(point => <li style={bulletPoint} >{point}</li>)}
                             </ul>
@@ -49,7 +47,7 @@ const Page = ({theme, page}) => {
 
     return (
       <div style={container}>
-        {header}
+        <h1 style={headerStyle}>{page.header}</h1>
         {bulletPoints}
         {image}
       </div>
