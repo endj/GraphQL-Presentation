@@ -1,11 +1,13 @@
-package se.edinjakupovic.graphqlpresentation.config.bean;
+package se.edinjakupovic.graphqlpresentation.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import se.edinjakupovic.graphqlpresentation.service.*;
+import se.edinjakupovic.graphqlpresentation.service.theme.ColourService;
+import se.edinjakupovic.graphqlpresentation.service.theme.FontService;
 
 @Configuration
-public class OtherConfig {
+public class ServiceConfiguration {
 
     @Bean
     public PresentationService presentationService() {
@@ -15,6 +17,11 @@ public class OtherConfig {
     @Bean
     public ColourService colourService() {
         return new ColourService();
+    }
+
+    @Bean
+    public FontService fontService() {
+        return new FontService();
     }
 
     @Bean

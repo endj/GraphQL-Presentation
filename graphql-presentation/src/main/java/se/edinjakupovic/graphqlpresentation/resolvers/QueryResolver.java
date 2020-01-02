@@ -7,11 +7,11 @@ import se.edinjakupovic.graphqlpresentation.service.PresentationService;
 import java.util.Collection;
 import java.util.UUID;
 
-public class PresentationResolver implements GraphQLQueryResolver {
+public class QueryResolver implements GraphQLQueryResolver {
 
     private final PresentationService presentationService;
 
-    public PresentationResolver(PresentationService presentationService) {
+    public QueryResolver(PresentationService presentationService) {
         this.presentationService = presentationService;
     }
 

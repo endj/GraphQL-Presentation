@@ -11,6 +11,7 @@ import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 
 const edit = `
 {
@@ -47,14 +48,21 @@ const Presentations = ({presentations}) => {
            const numberOfPages = pres.meta ? pres.meta.numberOfSlides : null
 
            return <ExpansionPanel key={pres.id}  expanded={expanded === pres.id} onChange={handleChange(pres.id)}>
-              <ExpansionPanelSummary>
-                <div style={flexEvenly}>
+              <ExpansionPanelSummary onClick={() => navigator.clipboard.writeText(pres.id)}>
+                <Grid container item xs={3}>
                   <p>Title: {pres.title}</p>
+                </Grid>
+                <Grid container item xs={3}>
                   <p>{ pres.id ? `Id: ${pres.id}` : pres.id}</p>
-                </div>
+                </Grid>
+                <Grid container item xs={3}>
+                  <p>{ pres.author ?  `Author: ${pres.author.firstName} ${pres.author.lastName}` : pres.author}</p>
+                </Grid>
+                <Grid container item xs={3}>
+                  <p>{ numberOfPages ? `Number of Slides: ${numberOfPages}` : numberOfPages }</p>
+                </Grid>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
-                <p>{ numberOfPages ? `Number of Slides: ${numberOfPages}` : numberOfPages }</p>
                 <div style={maxWidth}>
                   <List>
                     { pages }
@@ -62,8 +70,7 @@ const Presentations = ({presentations}) => {
                 </div>
               </ExpansionPanelDetails>
             </ExpansionPanel>
-
-        })
+          })
         }
       </>
     )
@@ -102,77 +109,141 @@ const PageEditor = ({theme}) => {
       }
     }, [triggerSearch])
 
-    const header = {
-        marginTop: "0px",
-        textAlign: "center",
-        padding: "10px",
-        background: theme ? theme.colour.primary : "white",
-        color: theme ?  theme.colour.accent : "black"
-    }
-
     const container = {
         background: theme ? theme.colour.secondary : "white",
-        height: "100%"
-    }
-
-    const centered = {
-        marginLeft: "auto",
-        marginRight: "auto"
+        height: "100%",
+        width: "100%"
     }
 
     return (
       <div style={container}>
-       <h1 style={header}>{JSON.stringify(errorMsg)}</h1>
-       <div style={flexStyle}>
-         <div style={wide}>
-           { errorMsg || !!!compiledQuery
-               ?  <FallBack data={lastGoodResult}/>
-               :  <Query query={compiledQuery} setResult={setLastGoodResult} />
-           }
-         </div>
-         <div>
-           <div style={centered}>
+        {errorMsg ? <h1>{JSON.stringify(errorMsg)}</h1> : null}
+        <>
+          { errorMsg || !!!compiledQuery
+              ?  <FallBack data={lastGoodResult}/>
+              :  <Query query={compiledQuery} setResult={setLastGoodResult} />
+          }
+        </>
+
+        <div style={editorContainer}>
+
+          <div style={halfWidth}>
             <Paper elevation={2}>
              <div style={textContainer}>
                <TextField
                  label="Query Editor"
                  multiline
+                 fullWidth
                  value={query}
                  color="secondary"
                  onChange={event => setQuery(event.target.value)}
                />
              </div>
-             </Paper>
-           </div>
-           <Button variant="outlined" onClick={() => setTriggerSearch(t => !t)}>Trigger</Button>
-         </div>
-       </div>
+            </Paper>
+            <Button variant="outlined" onClick={() => setTriggerSearch(t => !t)}>Trigger</Button>
+          </div>
+
+          <div style={halfWidth}>
+            <pre style={schemaContainer}>
+              {schema}
+            </pre>
+          </div>
+
+        </div>
       </div>
     )
-}
-const wide = {
-    width:"75%"
 }
 
 const maxWidth = {
     width:"100%"
 }
 
+const halfWidth = {
+    width: "50%"
+}
+
+const editorContainer = {
+    width: "100%",
+    display: "flex"
+}
+
+const schemaContainer = {
+ padding: "20px",
+ height: "50vh",
+ overflow: "scroll",
+ background:"white",
+ borderRadius: "5px",
+ border: "1px solid black",
+ fontSize: "30px"
+}
 const textContainer = {
     padding: "20px",
     margin: "20px"
 }
 
-const flexStyle = {
-    display: "flex",
-    justifyContent: "space-around",
-    width: "100%"
+const schema = `
+type Presentation {
+    id: ID!
+    title: String!
+    author: Author
+    meta: Meta
+    theme: Theme
+    pages: [Page]
 }
 
-const flexEvenly = {
-        display: "flex",
-        justifyContent: "space-between",
-        width: "100%"
+type Page {
+    bulletPoints: [String]
+    header: String
+    image: String
+    id: ID!
 }
+
+type Author {
+    age: Int
+    firstName: String
+    lastName: String
+    id: ID!
+}
+
+type Meta {
+    createdAt: String
+    numberOfSlides: Int
+}
+
+type Theme {
+    font(theme: FontTheme): Font
+    colour(theme: ColourTheme!): Colour
+}
+
+type Font {
+    family: String
+    size: String
+    colour: String
+}
+
+type Colour {
+    primary: String
+    secondary: String
+    accent: String
+}
+
+enum ColourTheme {
+    DARK,
+    LIGHT,
+    GREEN
+}
+
+enum FontTheme {
+    MONO,
+    MONO_LIGHT,
+    PRESENTATION,
+    PRESENTATION_LIGHT
+}
+
+type Query {
+    presentations: [Presentation]
+    presentation(id: ID!): Presentation!
+}
+`
 
 export default PageEditor

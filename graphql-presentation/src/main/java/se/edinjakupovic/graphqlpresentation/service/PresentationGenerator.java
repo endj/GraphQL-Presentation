@@ -3,6 +3,8 @@ package se.edinjakupovic.graphqlpresentation.service;
 import lombok.SneakyThrows;
 import org.springframework.util.ResourceUtils;
 import se.edinjakupovic.graphqlpresentation.model.*;
+import se.edinjakupovic.graphqlpresentation.service.theme.ColourService;
+import se.edinjakupovic.graphqlpresentation.service.theme.ColourTheme;
 
 import java.nio.file.Files;
 import java.time.LocalDate;

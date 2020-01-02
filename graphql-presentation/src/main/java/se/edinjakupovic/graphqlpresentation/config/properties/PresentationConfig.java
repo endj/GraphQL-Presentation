@@ -1,4 +1,4 @@
-package se.edinjakupovic.graphqlpresentation.config;
+package se.edinjakupovic.graphqlpresentation.config.properties;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

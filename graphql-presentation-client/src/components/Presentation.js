@@ -16,12 +16,23 @@ export const PresentationDataProvider = () => {
      return <Presentation presentation={data.presentation}/>
 }
 
+const EndOfPresentation = ({theme}) => {
+    const container = {
+        background: theme.colour.secondary,
+        height: "100%",
+        width:"100%"
+    }
+  return <div style={container}></div>
+}
+
 export const Presentation = ({presentation}) => {
     const [page,setPage] = useState(0)
+    const [showEditor, setShowEditor] = useState(false)
 
-    const onDown = (key) => {
+    const onDown = key => {
       if (key === "ArrowRight") setPage(oldPage => oldPage+1)
       if (key === "ArrowLeft") setPage(oldPage => Math.max(oldPage-1,0))
+      if (key === "F1") setShowEditor(bool => !bool)
     }
 
     useEffect(() => {
@@ -33,9 +44,11 @@ export const Presentation = ({presentation}) => {
     return (
       <>
         {
-        pageToRender
-          ? <Page theme={presentation.theme} page={pageToRender}/>
-          : <PageEditor theme={presentation.theme}/>
+          showEditor
+            ? <PageEditor theme={presentation.theme}/>
+            : pageToRender
+                  ? <Page theme={presentation.theme} page={pageToRender}/>
+                  : <EndOfPresentation theme={presentation.theme}/>
         }
       </>
     )

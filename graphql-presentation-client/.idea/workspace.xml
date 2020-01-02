@@ -2,23 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e9337513-2c4c-4368-8249-1d78c63a506c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Header.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/queries.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/queries.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/PageEditor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PageEditor.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Presentation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Presentation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PresentationSelector.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PresentationSelector.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/contexts/StyleContext.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graphql-presentation/src/main/java/se/edinjakupovic/graphqlpresentation/GraphqlPresentationApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graphql-presentation/src/main/java/se/edinjakupovic/graphqlpresentation/GraphqlPresentationApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graphql-presentation/src/main/java/se/edinjakupovic/graphqlpresentation/config/OtherConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graphql-presentation/src/main/java/se/edinjakupovic/graphqlpresentation/config/bean/OtherConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graphql-presentation/src/main/java/se/edinjakupovic/graphqlpresentation/config/ResolverConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graphql-presentation/src/main/java/se/edinjakupovic/graphqlpresentation/config/bean/ResolverConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graphql-presentation/src/main/java/se/edinjakupovic/graphqlpresentation/config/SlidesConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graphql-presentation/src/main/java/se/edinjakupovic/graphqlpresentation/service/ImageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graphql-presentation/src/main/java/se/edinjakupovic/graphqlpresentation/service/ImageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graphql-presentation/src/main/java/se/edinjakupovic/graphqlpresentation/GraphqlPresentationApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graphql-presentation/src/main/java/se/edinjakupovic/graphqlpresentation/config/Author.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graphql-presentation/src/main/java/se/edinjakupovic/graphqlpresentation/config/Font.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graphql-presentation/src/main/java/se/edinjakupovic/graphqlpresentation/config/PresentationConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graphql-presentation/src/main/java/se/edinjakupovic/graphqlpresentation/config/bean/OtherConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graphql-presentation/src/main/java/se/edinjakupovic/graphqlpresentation/config/bean/ResolverConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graphql-presentation/src/main/java/se/edinjakupovic/graphqlpresentation/resolvers/PresentationResolver.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graphql-presentation/src/main/java/se/edinjakupovic/graphqlpresentation/service/ColourService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graphql-presentation/src/main/java/se/edinjakupovic/graphqlpresentation/service/ColourTheme.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../graphql-presentation/src/main/java/se/edinjakupovic/graphqlpresentation/service/PresentationGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graphql-presentation/src/main/java/se/edinjakupovic/graphqlpresentation/service/PresentationGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graphql-presentation/src/main/java/se/edinjakupovic/graphqlpresentation/service/SlideDefinitionParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graphql-presentation/src/main/java/se/edinjakupovic/graphqlpresentation/service/SlideDefinitionParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../graphql-presentation/src/main/resources/schema.graphqls" beforeDir="false" afterPath="$PROJECT_DIR$/../graphql-presentation/src/main/resources/schema.graphqls" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,7 +35,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../graphql-presentation" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -90,9 +87,10 @@
       <screen x="70" y="27" width="2490" height="1413" />
     </state>
     <state x="925" y="432" width="720" height="538" key="find.popup/70.27.2490.1413/2560.0.1920.1080@70.27.2490.1413" timestamp="1577369360036" />
-    <state x="944" y="326" key="run.anything.popup" timestamp="1577268592256">
-      <screen x="70" y="27" width="2490" height="1413" />
+    <state x="899" y="326" key="run.anything.popup" timestamp="1577997885252">
+      <screen x="0" y="27" width="2560" height="1413" />
     </state>
+    <state x="899" y="326" key="run.anything.popup/0.27.2560.1413/2560.0.1920.1080@0.27.2560.1413" timestamp="1577997885252" />
     <state x="944" y="326" key="run.anything.popup/70.27.2490.1413/2560.0.1920.1080@70.27.2490.1413" timestamp="1577268592256" />
     <state x="978" y="349" width="672" height="678" key="search.everywhere.popup" timestamp="1577376815757">
       <screen x="70" y="27" width="2490" height="1413" />

@@ -4,10 +4,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import se.edinjakupovic.graphqlpresentation.config.PresentationConfig;
+import se.edinjakupovic.graphqlpresentation.config.properties.PresentationConfig;
 import se.edinjakupovic.graphqlpresentation.model.*;
-import se.edinjakupovic.graphqlpresentation.service.ColourService;
-import se.edinjakupovic.graphqlpresentation.service.ColourTheme;
+import se.edinjakupovic.graphqlpresentation.service.theme.ColourService;
+import se.edinjakupovic.graphqlpresentation.service.theme.ColourTheme;
 import se.edinjakupovic.graphqlpresentation.service.PresentationGenerator;
 import se.edinjakupovic.graphqlpresentation.service.PresentationService;
 
@@ -18,14 +18,14 @@ import java.util.stream.IntStream;
 
 @Slf4j
 @SpringBootApplication
-public class GraphqlPresentationApplication implements CommandLineRunner {
+public class GraphQlPresentationApplication implements CommandLineRunner {
 
     private final PresentationService presentationService;
     private final PresentationGenerator presentationGenerator;
     private final PresentationConfig presentationConfig;
     private final ColourService colourService;
 
-    public GraphqlPresentationApplication(PresentationService presentationService,
+    public GraphQlPresentationApplication(PresentationService presentationService,
                                           PresentationGenerator presentationGenerator,
                                           PresentationConfig presentationConfig,
                                           ColourService colourService) {
@@ -36,18 +36,18 @@ public class GraphqlPresentationApplication implements CommandLineRunner {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(GraphqlPresentationApplication.class, args);
+        SpringApplication.run(GraphQlPresentationApplication.class, args);
     }
 
     @Override
     public void run(String... args) {
-        Presentation presentation = createPresentationFromConfig();
+        Presentation presentation = createPresentationFromConfig(presentationConfig);
         presentationService.savePresentation(presentation);
         IntStream.range(0, 5)
                 .forEach(x -> presentationService.savePresentation(presentationGenerator.generateRandomPresentation()));
     }
 
-    private Presentation createPresentationFromConfig() {
+    private Presentation createPresentationFromConfig(PresentationConfig presentationConfig) {
         List<Page> slidePages = presentationGenerator.generatePresentationSlidesFromFile(presentationConfig.getFile());
         return Presentation.builder()
                 .id(UUID.randomUUID())

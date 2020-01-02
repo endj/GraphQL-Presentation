@@ -1,4 +1,4 @@
-package se.edinjakupovic.graphqlpresentation.service;
+package se.edinjakupovic.graphqlpresentation.service.theme;
 
 public enum ColourTheme {
     DARK,

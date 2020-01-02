@@ -15,11 +15,11 @@ export const FIND_PRESENTATION_BY_ID = gql`query Presentation($id: ID!){
                                        numberOfSlides
                                      }
                                      theme {
-                                       font {
+                                       font(theme: PRESENTATION) {
                                          family
                                          size
                                        }
-                                       colour {
+                                       colour(theme: DARK) {
                                          primary
                                          secondary
                                          accent
@@ -46,11 +46,11 @@ export const LIST_ALL_PRESENTATIONS = gql`{
                                        createdAt
                                      }
                                      theme {
-                                       font {
+                                       font(theme: PRESENTATION) {
                                          family
                                          size
                                        }
-                                       colour {
+                                       colour(theme: DARK) {
                                          primary
                                          secondary
                                          accent
