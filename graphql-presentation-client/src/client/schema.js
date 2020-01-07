@@ -1,4 +1,3 @@
-
 export const SCHEMA = `
 type Query {
     presentations: [Presentation!]!

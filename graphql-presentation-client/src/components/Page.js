@@ -32,16 +32,17 @@ const Page = ({ theme, page }) => {
     background: colors.secondary
   };
 
-
   const image = page.image ? (
-    <img style={imageStyle} src={"data:image/jpeg;base64," + page.image} />
+    <img style={imageStyle} src={`data:image/jpeg;base64,${page.image}`} />
   ) : null;
 
   const bulletPoints =
     page.bulletPoints && page.bulletPoints.length > 0 ? (
       <ul style={bulletPointsStyle}>
         {page.bulletPoints.map(point => (
-          <li key={point} style={bulletPoint}>{point}</li>
+          <li key={point} style={bulletPoint}>
+            {point}
+          </li>
         ))}
       </ul>
     ) : null;

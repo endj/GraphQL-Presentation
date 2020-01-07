@@ -7,7 +7,6 @@ import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import Divider from "@material-ui/core/Divider";
 import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
@@ -15,9 +14,6 @@ import { SCHEMA } from "../client/schema";
 import { parse } from "graphql/language";
 import { validate } from "graphql/validation";
 import { buildASTSchema } from "graphql";
-
-const edit = `
-`;
 
 const Presentations = ({ presentations }) => {
   const [expanded, setExpanded] = useState();
@@ -33,10 +29,9 @@ const Presentations = ({ presentations }) => {
           ? pres.pages.map(page => {
               return (
                 <>
-                  <ListItem>
+                  <ListItem divider>
                     <Page theme={pres.theme} page={page} />
                   </ListItem>
-                  <Divider />
                 </>
               );
             })
@@ -53,26 +48,16 @@ const Presentations = ({ presentations }) => {
             <ExpansionPanelSummary
               onClick={() => navigator.clipboard.writeText(pres.id)}
             >
-              <Grid container item xs={3}>
-                <p>Title: {pres.title}</p>
-              </Grid>
-              <Grid container item xs={3}>
-                <p>{pres.id ? `Id: ${pres.id}` : pres.id}</p>
-              </Grid>
-              <Grid container item xs={3}>
-                <p>
-                  {pres.author
-                    ? `Author: ${pres.author.firstName} ${pres.author.lastName}`
-                    : pres.author}
-                </p>
-              </Grid>
-              <Grid container item xs={3}>
-                <p>
-                  {numberOfPages
-                    ? `Number of Slides: ${numberOfPages}`
-                    : numberOfPages}
-                </p>
-              </Grid>
+              <PanelText text={`Title: ${pres.title}`} />
+              <PanelText text={`Id: ${pres.id}`} />
+              {pres.author && (
+                <PanelText
+                  text={`Author: ${pres.author.firstName} ${pres.author.lastName}`}
+                />
+              )}
+              {numberOfPages && (
+                <PanelText text={`Number of Slides: ${numberOfPages}`} />
+              )}
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <div style={maxWidth}>
@@ -83,6 +68,13 @@ const Presentations = ({ presentations }) => {
         );
       })}
     </>
+  );
+};
+const PanelText = ({ text }) => {
+  return (
+    <Grid container item xs={3}>
+      <p>{text}</p>
+    </Grid>
   );
 };
 
@@ -119,9 +111,9 @@ const validationSchema = buildASTSchema(
 const isValidQuery = query => !validate(validationSchema, query).length;
 
 const PageEditor = ({ theme }) => {
-  const [query, setQuery] = useState(edit);
+  const [query, setQuery] = useState("");
   const [compiledQuery, setCompiledQuery] = useState();
-  const [errorMsg, setErrorMsg] = useState();
+  const [invalidQuery, setInvalidQuery] = useState(true);
   const [lastGoodResult, setLastGoodResult] = useState();
 
   useEffect(() => {
@@ -134,12 +126,14 @@ const PageEditor = ({ theme }) => {
               ${query}
             `
           );
-          setErrorMsg();
+          setInvalidQuery(false);
         } catch (e) {
-          setErrorMsg(e);
+          setInvalidQuery(true);
         }
       }
-    } catch (e) {}
+    } catch (e) {
+      setInvalidQuery(true);
+    }
   }, [query]);
 
   const container = {
@@ -150,15 +144,11 @@ const PageEditor = ({ theme }) => {
 
   return (
     <div style={container}>
-      {errorMsg ? <h1>{JSON.stringify(errorMsg)}</h1> : null}
-      <>
-        {errorMsg || !!!compiledQuery ? (
-          <FallBack data={lastGoodResult} />
-        ) : (
-          <Query query={compiledQuery} setResult={setLastGoodResult} />
-        )}
-      </>
-
+      {invalidQuery || !!!compiledQuery ? (
+        <FallBack data={lastGoodResult} />
+      ) : (
+        <Query query={compiledQuery} setResult={setLastGoodResult} />
+      )}
       <div style={editorContainer}>
         <div style={halfWidth}>
           <Paper elevation={2}>
@@ -167,8 +157,9 @@ const PageEditor = ({ theme }) => {
                 label="Query Editor"
                 multiline
                 fullWidth
+                error={invalidQuery}
                 value={query}
-                color="secondary"
+                color="primary"
                 onChange={event => setQuery(event.target.value)}
               />
             </div>
