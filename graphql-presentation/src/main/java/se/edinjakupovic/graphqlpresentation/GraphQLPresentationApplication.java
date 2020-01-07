@@ -5,11 +5,16 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import se.edinjakupovic.graphqlpresentation.config.properties.PresentationConfig;
-import se.edinjakupovic.graphqlpresentation.model.*;
-import se.edinjakupovic.graphqlpresentation.service.theme.ColourService;
-import se.edinjakupovic.graphqlpresentation.service.theme.ColourTheme;
+import se.edinjakupovic.graphqlpresentation.model.Author;
+import se.edinjakupovic.graphqlpresentation.model.Font;
+import se.edinjakupovic.graphqlpresentation.model.Meta;
+import se.edinjakupovic.graphqlpresentation.model.Page;
+import se.edinjakupovic.graphqlpresentation.model.Presentation;
+import se.edinjakupovic.graphqlpresentation.model.Theme;
 import se.edinjakupovic.graphqlpresentation.service.PresentationGenerator;
 import se.edinjakupovic.graphqlpresentation.service.PresentationService;
+import se.edinjakupovic.graphqlpresentation.service.theme.ColourService;
+import se.edinjakupovic.graphqlpresentation.service.theme.ColourTheme;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -18,14 +23,14 @@ import java.util.stream.IntStream;
 
 @Slf4j
 @SpringBootApplication
-public class GraphQlPresentationApplication implements CommandLineRunner {
+public class GraphQLPresentationApplication implements CommandLineRunner {
 
     private final PresentationService presentationService;
     private final PresentationGenerator presentationGenerator;
     private final PresentationConfig presentationConfig;
     private final ColourService colourService;
 
-    public GraphQlPresentationApplication(PresentationService presentationService,
+    public GraphQLPresentationApplication(PresentationService presentationService,
                                           PresentationGenerator presentationGenerator,
                                           PresentationConfig presentationConfig,
                                           ColourService colourService) {
@@ -36,7 +41,7 @@ public class GraphQlPresentationApplication implements CommandLineRunner {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(GraphQlPresentationApplication.class, args);
+        SpringApplication.run(GraphQLPresentationApplication.class, args);
     }
 
     @Override

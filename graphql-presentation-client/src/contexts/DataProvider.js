@@ -1,18 +1,13 @@
-import React from 'react'
-import ApolloClient from 'apollo-boost';
-import { ApolloProvider } from '@apollo/react-hooks';
+import React from "react";
+import ApolloClient from "apollo-boost";
+import { ApolloProvider } from "@apollo/react-hooks";
 
 const client = new ApolloClient({
-  uri: 'http://localhost:8080/graphql',
+  uri: "http://localhost:8080/graphql"
 });
 
-const DataProvider = ({children}) => {
+const DataProvider = ({ children }) => {
+  return <ApolloProvider client={client}>{children}</ApolloProvider>;
+};
 
-    return (
-      <ApolloProvider client={client}>
-        { children }
-      </ApolloProvider>
-    )
-}
-
-export default DataProvider
+export default DataProvider;

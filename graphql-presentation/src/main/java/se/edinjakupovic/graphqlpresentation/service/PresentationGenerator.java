@@ -2,12 +2,19 @@ package se.edinjakupovic.graphqlpresentation.service;
 
 import lombok.SneakyThrows;
 import org.springframework.util.ResourceUtils;
-import se.edinjakupovic.graphqlpresentation.model.*;
+import se.edinjakupovic.graphqlpresentation.model.Author;
+import se.edinjakupovic.graphqlpresentation.model.Font;
+import se.edinjakupovic.graphqlpresentation.model.Meta;
+import se.edinjakupovic.graphqlpresentation.model.Page;
+import se.edinjakupovic.graphqlpresentation.model.Presentation;
+import se.edinjakupovic.graphqlpresentation.model.Theme;
 import se.edinjakupovic.graphqlpresentation.service.theme.ColourService;
 import se.edinjakupovic.graphqlpresentation.service.theme.ColourTheme;
 
 import java.nio.file.Files;
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
@@ -64,20 +71,18 @@ public class PresentationGenerator {
     private List<Page> createRandomPages() {
         int numberOfPages = random.nextInt(1, 5);
 
-        return IntStream.rangeClosed(0, numberOfPages).mapToObj(x ->
+        return IntStream.rangeClosed(0, numberOfPages).mapToObj(pages ->
                 Page.builder()
-                        .bulletPoints(
-                                List.of(
-                                        randomBulletPoint(),
-                                        randomBulletPoint(),
-                                        randomBulletPoint()))
+                        .bulletPoints(randomBulletPoints(random.nextInt(2, 5)))
                         .header(randomHeader())
                         .id(UUID.randomUUID()).build()
         ).collect(Collectors.toList());
     }
 
-    private String randomBulletPoint() {
-        return RANDOM_POINTS[random.nextInt(0, RANDOM_POINTS.length - 1)];
+    private List<String> randomBulletPoints(int numberOfPoints) {
+        List<String> collect = Arrays.stream(RANDOM_POINTS).collect(Collectors.toList());
+        Collections.shuffle(collect);
+        return collect.subList(0, numberOfPoints);
     }
 
     private String randomTitle() {
@@ -107,7 +112,7 @@ public class PresentationGenerator {
             "A Netflix for Youtube",
             "Service as a platform",
             "Platform as a API",
-            "Service as a Service as a Service",
+            "Service as a Platform as a Service",
             "Cloud learning Blockchain AI"
     };
 
@@ -122,7 +127,6 @@ public class PresentationGenerator {
             "Quantum Computing",
             "Mobile First",
             "Voice-as-User Interface",
-            "Multiexperience",
             "Internet of Things"
     };
 }

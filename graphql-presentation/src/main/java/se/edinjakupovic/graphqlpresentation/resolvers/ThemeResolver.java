@@ -9,6 +9,8 @@ import se.edinjakupovic.graphqlpresentation.service.theme.ColourTheme;
 import se.edinjakupovic.graphqlpresentation.service.theme.FontService;
 import se.edinjakupovic.graphqlpresentation.service.theme.FontTheme;
 
+import java.util.Objects;
+
 public class ThemeResolver implements GraphQLResolver<Theme> {
 
     private final ColourService colourService;
@@ -20,13 +22,14 @@ public class ThemeResolver implements GraphQLResolver<Theme> {
     }
 
     public Colour colour(Theme theme, ColourTheme colourTheme) {
+
+        if (colourTheme == null) {
+            return theme.getColour() == null ? colourService.getColourTheme(ColourTheme.LIGHT) : theme.getColour();
+        }
         return colourService.getColourTheme(colourTheme);
     }
 
     public Font font(Theme theme, FontTheme fontTheme) {
-        if (fontTheme == null) {
-            return fontService.getFontTheme(FontTheme.PRESENTATION);
-        }
-        return fontService.getFontTheme(fontTheme);
+        return fontService.getFontTheme(Objects.requireNonNullElse(fontTheme, FontTheme.PRESENTATION));
     }
 }

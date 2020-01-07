@@ -3,7 +3,7 @@ presentation:
   title: "An introduction to GraphQL"
   font:
     size: "55px"
-    family: "roboto"
+    family: "verdana"
     colour: "black"
   author:
     first-name: "Edin"

@@ -1,57 +1,66 @@
-import React from 'react'
+import React from "react";
 
-const Page = ({theme, page}) => {
+const Page = ({ theme, page }) => {
+  const fontSize = theme && theme.font ? theme.font.size : "36px";
+  const fontFamily = theme && theme.font ? theme.font.family : "roboto";
 
-    let fontSize = theme && theme.font ? theme.font.size : "36px"
-    let colors = {
-        primary: theme ? theme.colour.primary : "white",
-        secondary: theme ?  theme.colour.secondary : "white",
-        accent: theme ? theme.colour.accent : "black"
-    }
+  const colors = {
+    primary: theme && theme.colour ? theme.colour.primary : "white",
+    secondary: theme && theme.colour ? theme.colour.secondary : "white",
+    accent: theme && theme.colour ? theme.colour.accent : "black"
+  };
 
-    const headerStyle = {
-      marginTop: "0px",
-      textAlign: "center",
-      padding: "10px",
-      background: colors.primary,
-      color: colors.accent
-    }
+  const headerStyle = {
+    marginTop: "0px",
+    textAlign: "center",
+    padding: "10px",
+    background: colors.primary,
+    color: colors.accent,
+    fontFamily: fontFamily
+  };
 
-    const container = {
-        background: colors.secondary,
-        height: "100%",
-        width:"100%"
-    }
+  const container = {
+    background: colors.secondary,
+    height: "100%",
+    width: "100%"
+  };
 
-    const bulletPoint = {
-        fontFamily: "roboto",
-        fontSize:   fontSize,
-        color:      colors.accent,
-        background: colors.secondary
-    }
+  const bulletPoint = {
+    fontFamily: fontFamily,
+    fontSize: fontSize,
+    color: colors.accent,
+    background: colors.secondary
+  };
 
-    const bulletPointsStyle = {
-        padding: "100px"
-    }
 
-    const imageStyle = {
-        width: "100%"
-    }
+  const image = page.image ? (
+    <img style={imageStyle} src={"data:image/jpeg;base64," + page.image} />
+  ) : null;
 
-    const image = page.image ? <img style={imageStyle} src={"data:image/jpeg;base64,"+page.image} />: null
-    const bulletPoints = page.bulletPoints && page.bulletPoints.length > 0
-                          ? <ul style={bulletPointsStyle}>
-                              {page.bulletPoints.map(point => <li style={bulletPoint} >{point}</li>)}
-                            </ul>
-                          : null;
+  const bulletPoints =
+    page.bulletPoints && page.bulletPoints.length > 0 ? (
+      <ul style={bulletPointsStyle}>
+        {page.bulletPoints.map(point => (
+          <li key={point} style={bulletPoint}>{point}</li>
+        ))}
+      </ul>
+    ) : null;
 
-    return (
-      <div style={container}>
-        <h1 style={headerStyle}>{page.header}</h1>
-        {bulletPoints}
-        {image}
-      </div>
-    )
-}
+  return (
+    <div style={container}>
+      <h1 style={headerStyle}>{page.header}</h1>
+      {bulletPoints}
+      {image}
+    </div>
+  );
+};
 
-export default Page
+const bulletPointsStyle = {
+  padding: "100px"
+};
+
+const imageStyle = {
+  width: "100%"
+};
+
+export default Page;

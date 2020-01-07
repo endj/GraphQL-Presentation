@@ -1,3 +1,10 @@
+
+export const SCHEMA = `
+type Query {
+    presentations: [Presentation!]!
+    presentation(id: ID!): Presentation!
+}
+
 type Presentation {
     id: ID!
     title: String!
@@ -22,8 +29,8 @@ type Author {
 }
 
 type Meta {
-    createdAt: String
-    numberOfSlides: Int
+    createdAt: String!
+    numberOfSlides: Int!
 }
 
 type Theme {
@@ -56,7 +63,5 @@ enum FontTheme {
     PRESENTATION_LIGHT
 }
 
-type Query {
-    presentations: [Presentation!]!
-    presentation(id: ID!): Presentation!
-}
+
+`;

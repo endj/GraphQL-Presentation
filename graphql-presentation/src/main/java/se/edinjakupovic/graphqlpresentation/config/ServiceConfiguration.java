@@ -2,7 +2,10 @@ package se.edinjakupovic.graphqlpresentation.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import se.edinjakupovic.graphqlpresentation.service.*;
+import se.edinjakupovic.graphqlpresentation.service.ImageService;
+import se.edinjakupovic.graphqlpresentation.service.PresentationGenerator;
+import se.edinjakupovic.graphqlpresentation.service.PresentationService;
+import se.edinjakupovic.graphqlpresentation.service.SlideDefinitionParser;
 import se.edinjakupovic.graphqlpresentation.service.theme.ColourService;
 import se.edinjakupovic.graphqlpresentation.service.theme.FontService;
 

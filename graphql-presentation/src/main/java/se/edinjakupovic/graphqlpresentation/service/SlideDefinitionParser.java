@@ -1,6 +1,5 @@
 package se.edinjakupovic.graphqlpresentation.service;
 
-import lombok.extern.slf4j.Slf4j;
 import se.edinjakupovic.graphqlpresentation.model.Page;
 
 import java.util.ArrayList;
@@ -9,7 +8,6 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-@Slf4j
 public class SlideDefinitionParser {
     private static final String END_OF_PAGE = "-";
     private static final String IMAGE_START = "[";
@@ -27,7 +25,6 @@ public class SlideDefinitionParser {
         List<String[]> pageLines = splitByPage(lines);
         return pageLines.stream().map(this::createPage).collect(Collectors.toList());
     }
-
 
     private Page createPage(String[] lines) {
         List<String> bulletPoints = new ArrayList<>();
@@ -63,6 +60,4 @@ public class SlideDefinitionParser {
         }
         return definitions;
     }
-
-
 }
