@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 export const App = () => {
   return (
     <DataProvider>
+    <div >
       <Router>
         <Switch>
           <Route path="/slide/:id">
@@ -17,6 +18,7 @@ export const App = () => {
           </Route>
         </Switch>
       </Router>
+      </div>
     </DataProvider>
   );
 };

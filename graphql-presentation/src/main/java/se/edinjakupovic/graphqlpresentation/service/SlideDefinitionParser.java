@@ -22,8 +22,7 @@ public class SlideDefinitionParser {
 
     public List<Page> parseFileToPresentation(String slideDefinition) {
         String[] lines = slideDefinition.split(System.lineSeparator());
-        List<String[]> pageLines = splitByPage(lines);
-        return pageLines.stream().map(this::createPage).collect(Collectors.toList());
+        return splitByPage(lines).stream().map(this::createPage).collect(Collectors.toList());
     }
 
     private Page createPage(String[] lines) {

@@ -2,11 +2,13 @@ package se.edinjakupovic.graphqlpresentation.service.theme;
 
 import se.edinjakupovic.graphqlpresentation.model.Colour;
 
+import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class ColourService {
-    private static final Map<ColourTheme, Colour> themeMap = new ConcurrentHashMap<>();
+    private static final EnumMap<ColourTheme, Colour> themeMap = new EnumMap<>(ColourTheme.class);
 
     static {
         themeMap.put(ColourTheme.DARK, Colour.builder()

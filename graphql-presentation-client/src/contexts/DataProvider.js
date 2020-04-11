@@ -6,8 +6,6 @@ const client = new ApolloClient({
   uri: "http://localhost:8080/graphql"
 });
 
-const DataProvider = ({ children }) => {
-  return <ApolloProvider client={client}>{children}</ApolloProvider>;
-};
+const DataProvider = ({ children }) => <ApolloProvider client={client}>{children}</ApolloProvider>;
 
 export default DataProvider;

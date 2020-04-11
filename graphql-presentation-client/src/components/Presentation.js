@@ -18,16 +18,6 @@ export const PresentationDataProvider = () => {
   return <Presentation presentation={data.presentation} />;
 };
 
-const EndOfPresentation = ({ theme }) => {
-  const container = {
-    background: theme.colour.secondary,
-    backgroundSize: "auto",
-    height: "100%",
-    width: "100%"
-  };
-  return <div style={container} />;
-};
-
 export const Presentation = ({ presentation }) => {
   const [page, setPage] = useState(0);
   const [showEditor, setShowEditor] = useState(false);
@@ -43,16 +33,11 @@ export const Presentation = ({ presentation }) => {
     return () => window.removeEventListener("keydown", onDown);
   }, []);
 
-  const pageToRender = presentation.pages ? presentation.pages[page] : null;
+  const pageToRender = presentation.pages && presentation.pages[page];
   return (
     <>
-      {showEditor ? (
-        <PageEditor theme={presentation.theme} />
-      ) : pageToRender ? (
-        <Page theme={presentation.theme} page={pageToRender} />
-      ) : (
-        <EndOfPresentation theme={presentation.theme} />
-      )}
+      {showEditor && (<PageEditor theme={presentation.theme} />) }
+      {pageToRender && (<Page theme={presentation.theme} page={pageToRender} />)}
     </>
   );
 };

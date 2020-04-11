@@ -2,6 +2,8 @@ package se.edinjakupovic.graphqlpresentation.service.theme;
 
 import se.edinjakupovic.graphqlpresentation.model.Font;
 
+import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -11,7 +13,7 @@ import static se.edinjakupovic.graphqlpresentation.service.theme.FontTheme.PRESE
 import static se.edinjakupovic.graphqlpresentation.service.theme.FontTheme.PRESENTATION_LIGHT;
 
 public class FontService {
-    private static final Map<FontTheme, Font> fontMap = new ConcurrentHashMap<>();
+    private static final EnumMap<FontTheme, Font> fontMap = new EnumMap<>(FontTheme.class);
 
     static {
         fontMap.put(MONO,

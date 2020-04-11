@@ -24,7 +24,7 @@ public class ThemeResolver implements GraphQLResolver<Theme> {
     public Colour colour(Theme theme, ColourTheme colourTheme) {
 
         if (colourTheme == null) {
-            return theme.getColour() == null ? colourService.getColourTheme(ColourTheme.LIGHT) : theme.getColour();
+            return Objects.requireNonNullElse(theme.getColour(), colourService.getColourTheme(ColourTheme.LIGHT));
         }
         return colourService.getColourTheme(colourTheme);
     }

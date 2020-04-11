@@ -8,7 +8,6 @@ import Paper from "@material-ui/core/Paper";
 
 const PresentationSelector = () => {
   const { loading, error, data } = useQuery(LIST_ALL_PRESENTATIONS);
-  const history = useHistory();
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
@@ -16,62 +15,63 @@ const PresentationSelector = () => {
   return (
     <>
       <h2>Presentations</h2>
-      <div style={containerPadding}>
+      <div style={{padding: "70px"}}>
         <Grid container spacing={10}>
-          {data.presentations.map(presentation => (
-            <Grid
-              onClick={() => history.push(`/slide/${presentation.id}`)}
-              container
-              item
-              xs={4}
-              key={presentation.id + presentation.title}
-            >
-              <PresentationItem presentation={presentation} />
-            </Grid>
-          ))}
+          <FormattedPresentations presentations={data.presentations} />
         </Grid>
       </div>
     </>
   );
 };
 
-const PresentationItem = ({ presentation }) => {
-  const hasTheme = !!presentation.theme;
+const FormattedPresentations = ({presentations}) => {
+  const history = useHistory();
 
-  const containerStyle = {
-    padding: "10px",
-    background: hasTheme ? presentation.theme.colour.primary : "white",
-    color: hasTheme ? presentation.theme.colour.accent : "#f3f3f3"
-  };
+  return presentations.map(presentation => (
+                   <Grid onClick={() => history.push(`/slide/${presentation.id}`)}
+                     container item xs={4} key={presentation.id + presentation.title}>
+                     <PresentationItem presentation={presentation} />
+                   </Grid>
+                 ))
+}
+
+
+const PresentationItem = ({ presentation }) => {
+  const { theme } = presentation;
+
+  const colour = {
+    primary: !!theme ? theme.colour.primary : "white",
+    secondary: !!theme ? theme.colour.secondary : "white",
+    accent: !!theme ? theme.colour.accent : "#f3f3f3"
+  }
 
   const infoStyle = {
     padding: "10px",
     minWidth: "300px",
-    background: hasTheme ? presentation.theme.colour.secondary : "white",
-    fontFamily: hasTheme ? presentation.theme.font.family : "white"
-  };
-
-  const textStyle = {
-    color: hasTheme ? presentation.theme.colour.accent : "black"
+    background: colour.secondary,
+    fontFamily: !!theme ? presentation.theme.font.family : "white"
   };
 
   return (
     <Paper elevation={3}>
-      <div style={containerStyle}>
+      <div style={{background: colour.primary, color: colour.accent, padding:"10px"}}>
         <p>{presentation.title}</p>
       </div>
       <div style={infoStyle}>
-        <p style={textStyle}>
-          Author: {presentation.author.firstName} {presentation.author.lastName}
-        </p>
-        <p style={textStyle}>Created: {presentation.meta.createdAt}</p>
+       <PresentationInfo author={presentation.author} createdAt={presentation.meta.createdAt} colour={colour}/>
       </div>
     </Paper>
   );
 };
 
-const containerPadding = {
-  padding: "70px"
-};
+const PresentationInfo = ({author, createdAt, colour}) => {
+
+return  <>
+          <p style={{color: colour.accent}}>
+             Author: {author.firstName} {author.lastName}
+          </p>
+          <p style={{color: colour.accent}}>Created: {createdAt}</p>
+        </>
+}
 
 export default PresentationSelector;

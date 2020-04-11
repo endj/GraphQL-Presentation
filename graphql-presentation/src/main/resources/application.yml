@@ -9,3 +9,7 @@ presentation:
     first-name: "Edin"
     last-name: "Jakupovic"
     age: 27
+
+graphql:
+  servlet:
+    actuator-metrics: true
